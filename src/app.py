@@ -39,8 +39,16 @@ def sitemap():
 @app.route('/user', methods=['GET'])
 def handle_hello():
 
+
+    query_results= User.query.all()
+    results= list(map(lambda item: item.serialize(), query_results))
+    print(query_results)
+    print(results)
+
+
     response_body = {
-        "msg": "Hello, this is your GET /user response "
+        "msg": "ok",
+        "results": results
     }
 
     return jsonify(response_body), 200
